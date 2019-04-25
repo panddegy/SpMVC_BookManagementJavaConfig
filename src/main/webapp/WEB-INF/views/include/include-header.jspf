@@ -1,0 +1,86 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<style>
+ul{
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+}
+li{
+	margin-top: 50px;
+}
+.dropdown-content {
+	display: none;
+	position: absolute;
+	flex-direction: column;
+	padding-top: 30px;
+	background-color: transparent;
+	min-width: 160px;
+	z-order : 10;
+	transition-duration: 0.5s;
+}
+.dropdown-btn-book:hover #dropdown-book{
+	display: flex;
+}
+.dropdown-btn-member:hover #dropdown-member{
+	display: flex;
+}
+.dropdown-btn-rental:hover #dropdown-rental{
+	display: flex;
+}
+.dropdown-btn-system:hover #dropdown-system{
+	display: flex;
+}
+</style>
+<h2>Library Management System</h2>
+<nav>
+	<ul>
+		<li><a href="${rootPath}/">Home</a></li>
+		<li class="dropdown-btn-book"><a href="javascript:void(0)">Book Management</a>
+			<div class="dropdown-content" id="dropdown-book">
+				<a href="${rootPath}/book/list" >Book List</a>
+				<a href="${rootPath}/book/insert" >Insert Book</a>
+			</div>
+		</li>
+		<li class="dropdown-btn-member"><a href="javascript:void(0)">Member Management</a>
+			<div class="dropdown-content"  id="dropdown-member">
+				<a href="${rootPath}/user/list" >Member List</a>
+				<a href="${rootPath}/user/insert" >Insert Member</a>
+			</div>
+		</li>
+		<li class="dropdown-btn-rental"><a href="javascript:void(0)">Rental Management</a>
+			<div class="dropdown-content"  id="dropdown-rental">
+				<a href="${rootPath}/rent/list" >Rental List</a>
+				<a href="${rootPath}/rent/insert" >Rental Book</a>
+				<a href="${rootPath}/rent/update" >Return Book</a>
+			</div>
+		</li>
+		<li class="dropdown-btn-system"><a href="javascript:void(0)">System Management</a>
+			<div class="dropdown-content"  id="dropdown-system">
+				<a href="#">Account Management</a>
+				<a href="${rootPath}/logout">LogOut</a>
+			</div>
+		</li>
+	</ul>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+*{
+	font-family: 'Nanum Gothic', sans-serif;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+}
+body{
+	margin: 0;
+	padding: 0;
+	background-color: #303030;
+}
+header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	background-color: #252525;
+	justify-content: center;
+	border-bottom: 1px solid gainsboro;
+	z-index: 10;
+}
+header h2{
+	flex: 1 1 auto;
+	margin-right: 150px;
+	margin-left: 150px;
+	padding: 24px 8px;
+	font-style: italic;
+	color: gainsboro;
+}
+nav{
+	flex: 1 1 auto;
+	justify-content: flex-end;
+}
+nav a{
+	flex: 0 0 auto;
+	padding: 8px 16px;
+	padding-bottom: 0;
+	text-decoration: none;
+	color: mediumturquoise;
+	font-style: italic;
+}
+nav a:hover{
+	color: lightcyan;
+}
+
+section{
+	margin-top: 190px;	
+}
+
+.content-container{
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	width: 100%;
+	color: mediumturquoise;
+	font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+
+

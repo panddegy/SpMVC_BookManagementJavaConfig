@@ -1,0 +1,79 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<style>
+table{
+	width: 80%;
+	margin: 20px auto;
+	border: 1px solid gainsboro;
+	color: gainsboro;
+}
+td, th{
+	border: 1px solid gainsboro;
+	padding: 4px 8px;	
+}
+.table-row{
+	cursor: pointer;
+}
+.table-row:hover{
+	background-color: gainsboro;
+	color: dimgray;
+}
+</style>
+<script>
+$(function(){
+	$(".table-row").click(function(){
+		let rent_seq=$(this).attr("data-id")
+		let rent_return_yn=$(this).attr("data-return")
+		if(rent_return_yn=='n'){
+			if(confirm("반납하시겠습니까?")){
+				location.href="${rootPath}/rent/return/"+rent_seq	
+			}
+		}
+		
+	})
+})
+</script>
+<article class="content-container">
+	<c:if test="${BODY=='RENTLIST'}"><h2>Rental List</h2></c:if>
+	<c:if test="${BODY=='RETURNLIST'}"><h2>Return List</h2></c:if>
+	<table>
+		<tr>
+			<th>NO</th>
+			<th>RENTAL DATE</th>
+			<th>RETURN DATE</th>
+			<th>BOOK CODE</th>
+			<th>MEMBER CODE</th>
+			<th>Return</th>
+		</tr>
+		<c:choose>
+			<c:when test="${empty LIST}">
+				<tr><td colspan="6">No data</td></tr>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="rent" items="${LIST}" varStatus="i">
+					<tr class="table-row" data-id="${rent.rent_seq}" data-return="${rent.rent_return_yn}">
+						<td>${i.count}</td>
+						<td>${rent.rent_date}</td>
+						<td>${rent.rent_return_date}</td>
+						<td>${rent.rent_book_seq}</td>
+						<td>${rent.rent_user_seq}</td>
+						<td>${rent.rent_return_yn}</td>
+					</tr>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
+	</table>
+</article>
+
+
+
+
+
+
+
+
+
+
+

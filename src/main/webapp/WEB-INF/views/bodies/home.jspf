@@ -1,0 +1,62 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+
+<style>
+form{
+	display: flex;
+	flex-direction: column;
+	width: 20%;
+	margin: 0 auto;
+	text-align: center;
+}
+label{
+	color: aquamarine;
+	margin: 20px 0;
+	font-style: italic;
+}
+input{
+	padding: 8px 16px;
+	background-color: gainsboro;
+}
+</style>
+<script>
+$(function(){
+	$('.search-input').keydown(function(event) { 
+		if(event.keyCode == '13') { 
+			event.preventDefault();
+			let temp=$(this).val()
+			if(temp==""){
+				alert("검색할 내용을 입력하세요")
+				$(this).focus()
+				return
+			}
+			$('form').submit()
+		}
+	})
+})
+</script>
+<article class="content-container">
+	<h2>Search</h2>
+	<form:form modelAttribute="searchVO" autocomplete="off" action="${rootPath}/search">
+		<form:label path="book_isbn">BOOK ISBN</form:label>
+		<form:input path="book_isbn" id="book_isbn" class="search-input"/>
+		<form:label path="book_title">BOOK TITLE</form:label>
+		<form:input path="book_title" id="book_title" class="search-input"/>
+		<form:label path="user_phone">MEMBER`S PHONE</form:label>
+		<form:input path="user_phone" id="user_phone" class="search-input"/>
+		<form:label path="user_name">MEMBER`S NAME</form:label>
+		<form:input path="user_name" id="user_name" class="search-input"/>
+		<form:label path="rent_date">RENTAL DATE</form:label>
+		<form:input type="date" path="rent_date" id="rent_date" class="search-input"/>
+	</form:form>
+</article>
+
+
+
+
+
+
+
+

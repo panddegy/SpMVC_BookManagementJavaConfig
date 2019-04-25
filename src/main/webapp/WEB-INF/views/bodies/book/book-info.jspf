@@ -1,0 +1,127 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<style>
+.info-wrapper{
+	display: flex;
+	flex-direction: row;
+	width: 640px;
+	margin: 20px auto;
+	justify-content: center;
+	border: 1px solid gainsboro;
+}
+.image-wrapper{
+	flex: 0 0 300px;
+	margin: 10px;
+}
+.content-wrapper{
+	flex: 0 0 300px;
+	display: flex;
+	flex-direction: column;
+	margin: 10px;
+}
+.content{
+	display: flex;
+	flex-direction: row;
+	color: gainsboro;
+	font-style: italic;
+	margin: 5px;
+	padding: 4px 8px;
+	text-align: left;
+}
+.btn-wrapper{
+	display: flex;
+	flex-direction: row;
+	width: 80%;
+	margin: 20px auto;
+	justify-content: center;
+}
+
+.btn-wrapper button{
+	width: 150px;
+	padding: 8px 16px;
+	margin: 10px;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	font-style: italic;
+}
+.btn-wrapper button:hover {
+	color: gainsboro;
+	background-color: dimgray;
+}
+.content-title{
+	flex: 0 0 50px;
+	flex-wrap: nowrap;
+}
+.content-text{
+	flex: 0 0 230px;
+}
+</style>
+<script>
+$(function(){
+	$(".btn-update").click(function(){
+		location.href="${rootPath}/book/update?book_seq=${BOOK.book_seq}"
+	})
+	$(".btn-delete").click(function(){
+		location.href="${rootPath}/book/delete/${BOOK.book_seq}"
+	})
+	$(".btn-rent").click(function(){
+		location.href="${rootPath}/rent/member/${BOOK.book_seq}"
+	})
+	$(".btn-return").click(function(){
+		location.href="${rootPath}/rent/return/${BOOK.book_seq}"
+	})
+})
+</script>
+<article class="content-container">
+	<h2>Book Information</h2>
+	<div class="info-wrapper">
+		<div class="image-wrapper"><img alt="Book Image" src="${rootPath}/files/book/${BOOK.book_image}" width="300px"></div>
+		<div class="content-wrapper">
+			<div class="content">
+				<div class="content-title">제목 :&nbsp;</div>
+				<div class="content-text">${BOOK.book_title}</div>
+			</div>
+			<div class="content">
+				<div class="content-title">저자 :&nbsp;</div>
+				<div class="content-text">${BOOK.book_author}</div>
+			</div>
+			<div class="content">
+				<div class="content-title">가격 :&nbsp;</div>
+				<div class="content-text">${BOOK.book_price}</div>
+			</div>
+			<div class="content">
+				<div class="content-title">설명 :&nbsp;</div>
+				<div class="content-text">${BOOK.book_description}</div>
+			</div>
+		</div>
+	</div>
+	<div class="btn-wrapper">
+	<c:if test="${BOOK.book_rent_yn=='y'}">
+		<button type="button" class="btn-rent">Rent</button>
+	</c:if>
+	<c:if test="${BOOK.book_rent_yn=='n'}">
+		<button type="button" class="btn-return">Return</button>
+	</c:if>
+		<button type="button" class="btn-update">Update</button>
+		<button type="button" class="btn-delete">Delete</button>
+	</div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

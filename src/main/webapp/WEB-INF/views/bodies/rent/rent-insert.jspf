@@ -1,0 +1,125 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<style>
+form{
+	display: flex;
+	flex-direction: column;
+	width: 25%;
+	margin: 20px auto;
+	text-align: center;
+	transform: translateX(-55px);
+}
+label{
+	width: 100px;
+	color: aquamarine;
+	font-style: italic;
+	margin-right: 20px;
+	padding-top: 7px;
+}
+input{
+	flex: 0 0 307px;
+	padding: 8px 16px;
+	background-color: gainsboro;
+}
+input[type="file"]{
+	flex: 0 0 300px;
+	padding: 8px 16px;
+	color: black;
+}
+.input-wrapper{
+	display: flex;
+	flex-direction: row;
+	margin: 5px;
+	justify-content: flex-end;
+	text-align: right;
+}
+.btn-submit{
+	width: 150px;
+	padding: 8px 16px;
+	margin: 10px 0;
+	cursor: pointer;
+	border: none;
+	outline: none;
+	font-style: italic;
+}
+.btn-submit:hover {
+	color: gainsboro;
+	background-color: dimgray;
+}
+</style>
+<script>
+$(function(){
+	let rent_user_seq=$("#rent_user_seq").val()
+	let rent_book_seq=$("#rent_book_seq").val()
+	if(rent_user_seq==0){
+		$("#rent_user_seq").val("")	
+		$("#rent_user_seq").focus()
+	}
+	if(rent_book_seq==0){
+		$("#rent_book_seq").val("")
+		$("#rent_book_seq").focus()
+	}
+	
+	$('#rent_book_seq').keydown(function(event) { 
+		if(event.keyCode == '13') { 
+			event.preventDefault();
+			let search=$('#rent_book_seq').val()
+			 window.name="rent_book"
+			 window.open("${rootPath}/rent/rent_book?search="+search, "Book List", "width=850, height=600, resizable = no, scrollbars = yes")
+		}
+	})
+	$('#rent_user_seq').keydown(function(event) { 
+		if(event.keyCode == '13') { 
+			event.preventDefault();
+			let search=$('#rent_user_seq').val()
+			window.name="rent_member"
+		   	window.open("${rootPath}/rent/rent_member?search="+search, "Member List", "width=850, height=600, resizable = no, scrollbars = yes")
+		}
+	})
+
+})
+</script>
+<article class="content-container">
+	<h2>Rental Book</h2>
+	<form:form modelAttribute="rentVO" autocomplete="off" action="${rootPath}/rent/insert">
+	<div class="input-wrapper">
+		<form:label path="rent_user_seq">Member NO</form:label>
+		<form:input path="rent_user_seq" id="rent_user_seq" />
+	</div>
+	<div>
+	<p id="member-name"></p>
+	</div>
+	<div class="input-wrapper">
+		<form:label path="rent_book_seq">Book No</form:label>
+		<form:input path="rent_book_seq" id="rent_book_seq" />
+	</div>
+	<div class="input-wrapper">
+		<form:button class="btn-submit">Submit</form:button>
+	</div>
+	</form:form>
+	<div id="rental-list">
+	
+	</div>
+</article>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
